@@ -8,8 +8,8 @@ x = np.linspace(-10, 10, 1000)
 # distr = 'Cauchy'
 # distr = 'Norm'
 # distr = 'Laplace'
-# distr = 'Poisson'
-distr = 'Uniform'
+distr = 'Poisson'
+# distr = 'Uniform'
 
 
 if distr == 'Norm':
@@ -22,21 +22,19 @@ if distr == 'Norm':
     plt.subplot(131)
     sns.distplot(normal_distr_10, color="g")
     plt.plot(x, stats.norm.pdf(x, 0, 1), color="orange")
-    plt.title('10 значений')
+    plt.title('10 значений', y=-0.3)
 
     plt.subplot(132)
     sns.distplot(normal_distr_50, color="g")
     plt.plot(x, stats.norm.pdf(x, 0, 1), color="orange")
-    plt.title('50 значений')
-
+    plt.title('50 значений \n Нормальное распределение', y=-0.4)
 
     plt.subplot(133)
-    sns.distplot(normal_distr_1000, color="g", label='Экспериментальные данные')
-    plt.plot(x, stats.norm.pdf(x, 0, 1), color="orange", label='Реальные данные')
-    plt.title('1000 значений')
+    sns.distplot(normal_distr_1000, color="g", label='Гистограмма сгенерированных значений')
+    plt.plot(x, stats.norm.pdf(x, 0, 1), color="orange", label='График функции распределения')
+    plt.title('1000 значений', y=-0.3)
 
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0., prop={'size': 6})
-    plt.tight_layout(pad=1, w_pad=0.5, h_pad=2.0)
     plt.show()
     f.savefig('Normal_distr.png', dpi=200)
 
@@ -50,23 +48,21 @@ if distr == 'Cauchy':
     plt.subplot(131)
     sns.distplot(cauchy_distr_10, color="g")
     plt.plot(x, stats.cauchy.pdf(x, 0, 1), color="orange")
-    plt.title('10 значений')
+    plt.title('10 значений', y=-0.3)
 
     plt.subplot(132)
     sns.distplot(cauchy_distr_50, color="g")
     plt.plot(x, stats.cauchy.pdf(x, 0, 1), color="orange")
-    plt.title('50 значений')
-
+    plt.title('50 значений \n Распределение Коши', y=-0.4)
 
     plt.subplot(133)
-    sns.distplot(cauchy_distr_1000, color="g", label='Экспериментальные данные')
-    plt.plot(x, stats.cauchy.pdf(x, 0, 1), color="orange", label='Реальные данные')
-    plt.title('1000 значений')
+    sns.distplot(cauchy_distr_1000[(-100 <= cauchy_distr_1000) & (cauchy_distr_1000 <= 100)], color="g", label='Гистограмма сгенерированных значений')
+    plt.plot(x, stats.cauchy.pdf(x, 0, 1), color="orange", label='График функции распределения')
+    plt.title('1000 значений', y=-0.3)
 
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0., prop={'size': 6})
-    plt.tight_layout(pad=1, w_pad=0.5, h_pad=2.0)
     plt.show()
-    #f.savefig('Cauchy_distr.png', dpi=200)
+    f.savefig('Cauchy_distr.png', dpi=200)
 
 if distr == 'Laplace':
     x = np.linspace(-4, 4, 1000)
@@ -78,22 +74,21 @@ if distr == 'Laplace':
     plt.subplot(131)
     sns.distplot(lapl_distr_10, color="g")
     plt.plot(x, stats.laplace.pdf(x, math.sqrt(2) / 2, 1), color="orange")
-    plt.title('10 значений')
+    plt.title('10 значений', y=-0.3)
 
     plt.subplot(132)
     sns.distplot(lapl_distr_50, color="g")
     plt.plot(x, stats.laplace.pdf(x, math.sqrt(2) / 2, 1), color="orange")
-    plt.title('50 значений')
+    plt.title('50 значений \n Распределение Лапласа', y=-0.4)
 
     plt.subplot(133)
-    sns.distplot(lapl_distr_1000, color="g", label='Экспериментальные данные')
-    plt.plot(x, stats.laplace.pdf(x, math.sqrt(2) / 2, 1), color="orange", label='Реальные данные')
-    plt.title('1000 значений')
+    sns.distplot(lapl_distr_1000, color="g", label='Гистограмма сгенерированных значений')
+    plt.plot(x, stats.laplace.pdf(x, math.sqrt(2) / 2, 1), color="orange", label='График функции распределения')
+    plt.title('1000 значений', y=-0.3)
 
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0., prop={'size': 6})
-    plt.tight_layout(pad=1, w_pad=0.5, h_pad=2.0)
     plt.show()
-    # f.savefig('Laplace_distr.png', dpi=200)
+    f.savefig('Laplace_distr.png', dpi=200)
 
 if distr == 'Poisson':
     x = np.linspace(-4, 4, 1000)
@@ -105,22 +100,22 @@ if distr == 'Poisson':
     plt.subplot(131)
     sns.distplot(poi_distr_10, color="g")
     plt.plot(x, stats.poisson.pmf(x, 10, 0), color="orange")
-    plt.title('10 значений')
+    plt.title('10 значений', y=-0.3)
 
     plt.subplot(132)
     sns.distplot(poi_distr_50, color="g")
     plt.plot(x, stats.poisson.pmf(x, 10, 0), color="orange")
-    plt.title('50 значений')
+    plt.title('50 значений \n Распределение Пуассона', y=-0.4)
 
     plt.subplot(133)
-    sns.distplot(poi_distr_1000, color="g", label='Экспериментальные данные')
-    plt.plot(x, stats.poisson.pmf(x, 10, 0), color="orange", label='Реальные данные')
-    plt.title('1000 значений')
+    sns.distplot(poi_distr_1000, color="g", label='Гистограмма сгенерированных значений')
+    plt.plot(x, stats.poisson.pmf(x, 10, 0), color="orange", label='График функции распределения')
+    plt.title('1000 значений', y=-0.3)
 
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0., prop={'size': 6})
     plt.tight_layout(pad=1, w_pad=0.5, h_pad=2.0)
     plt.show()
-    # f.savefig('Poisson_distr.png', dpi=200)
+    f.savefig('Poisson_distr.png', dpi=200)
 
 if distr == 'Uniform':
     x = np.linspace(-4, 4, 1000)
@@ -132,19 +127,18 @@ if distr == 'Uniform':
     plt.subplot(131)
     sns.distplot(uni_distr_10, color="g")
     plt.plot(x, stats.uniform.pdf(x, -math.sqrt(3), 2 * math.sqrt(3)), color="orange")
-    plt.title('10 значений')
+    plt.title('10 значений', y=-0.3)
 
     plt.subplot(132)
     sns.distplot(uni_distr_50, color="g")
     plt.plot(x, stats.uniform.pdf(x, -math.sqrt(3), 2 * math.sqrt(3)), color="orange")
-    plt.title('50 значений')
+    plt.title('50 значений \n Равномерное распределение', y=-0.4)
 
     plt.subplot(133)
-    sns.distplot(uni_distr_1000, color="g", label='Экспериментальные данные')
-    plt.plot(x, stats.uniform.pdf(x, -math.sqrt(3), 2 * math.sqrt(3)), color="orange", label='Реальные данные')
-    plt.title('1000 значений')
+    sns.distplot(uni_distr_1000, color="g", label='Гистограмма сгенерированных значений')
+    plt.plot(x, stats.uniform.pdf(x, -math.sqrt(3), 2 * math.sqrt(3)), color="orange", label='График функции распределения')
+    plt.title('1000 значений', y=-0.3)
 
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0., prop={'size': 6})
-    plt.tight_layout(pad=1, w_pad=0.5, h_pad=2.0)
-    plt.show()
-    # f.savefig('Uniform_distr.png', dpi=200)
+    f.show()
+    f.savefig('Uniform_distr.png', dpi=200)
