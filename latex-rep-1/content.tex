@@ -1,0 +1,164 @@
+\section{Постановка задачи}
+Необходимо сгенерировать массивы данных для пяти распределений:
+\begin{itemize}
+\item нормальное распределение \( N(x, 0, 1) \)
+\item распределение Коши \( C(x, 0, 1) \)
+\item распределение Лапласа \( L(x, 0, 1/\sqrt{2}) \)
+\item распределение Пуассона \( P(k, 10) \)
+\item равномерное распределение \( U(x, -\sqrt{3}, \sqrt{3}) \)
+\end{itemize}
+Для каждого распределения массивы должны состоять из 10, 50, 1000 элементов. Построить гистограммы для полученных данных вместе с графиками функций плотности.
+
+
+
+\section{Теория}
+\subsection{Нормальное распределение}
+Плотность вероятности для нормального распределения (закона Гаусса):
+
+\begin{equation}
+  f(x, \mu, \sigma) = \frac{1}{{\sigma \sqrt {2\pi } }}e^{{{ - \left( {x - \mu } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - \mu } \right)^2 } {2\sigma ^2 }}} \right. \kern-\nulldelimiterspace} {2\sigma ^2 }}}
+\end{equation}
+ 
+В нашем частном случае при \( \sigma = 1 \) и \( \mu = 0 \):
+
+\begin{equation} 
+  f(x, 0, 1) = \frac{1}{ \sqrt {2\pi } }e^{{{ -{x}^2 } \mathord{\left/ {\vphantom {{ -{x}^2 } {2\sigma ^2 }}} \right. \kern-\nulldelimiterspace} {2}}}
+\end{equation}
+
+
+\subsection{Распределение Коши}
+Плотность вероятности для распределения Коши:
+\begin{equation} 
+f(x, {x_0}, \gamma) =  \frac{1}{\pi\gamma \left[1 + \left(\frac{x-x_0}{\gamma}\right)^2\right]}
+\end{equation}
+
+Для частного случая при \( \gamma = 1 \) и \( x_0 = 0 \):
+\begin{equation} 
+f(x, 0, 1) =  \frac{1}{\pi \left[1 + {x}^2\right]}
+\end{equation}
+
+
+\subsection{Распределение Лапласа}
+Плотность вероятности для распределения Лапласа:
+\begin{equation} 
+f(x, \beta, \alpha) = \frac{\alpha}{2} \, e^{-\alpha|x - \beta|}
+\end{equation}
+
+Для частного случая при \( \beta = 0 \) и \( \alpha = \frac{1}{\sqrt{2}} \):
+\begin{equation} 
+f(x, 0, \frac{1}{\sqrt{2}}) = \frac{1}{2\sqrt{2}} \, e^{-\frac{|x|}{\sqrt{2}}}
+\end{equation}
+
+
+\subsection{Распределение Пуассона}
+
+Плотность вероятности для распределения Пуассона:
+\begin{equation} 
+f(k, \lambda) = \frac{\lambda^k}{k!}\, e^{-\lambda}
+\end{equation}
+
+Для частного случая при \( \lambda = 10 \):
+\begin{equation} 
+f(k, 10) = \frac{10^k}{k!}\, e^{-10}
+\end{equation}
+
+\subsection{Равномерное распределение}
+Плотность вероятности для равномерного распределения:
+\begin{equation} 
+f(x, a, b) = \left\{
+\begin{matrix}
+{1 \over b-a}, & x\in [a,b] \\
+0, & x\not\in [a,b]
+\end{matrix}
+\right..
+\end{equation}
+
+Для частного случая при \( a = -\sqrt{3} \) и \( b = \sqrt{3} \):
+\begin{equation} 
+f(x, -\sqrt{3}, \sqrt{3}) = \left\{
+\begin{matrix}
+{1 \over 2\sqrt{3}}, & x\in [-\sqrt{3},\sqrt{3}] \\
+0, & x\not\in [-\sqrt{3},\sqrt{3}]
+\end{matrix}
+\right..
+\end{equation}
+
+
+\section{Реализация}
+\begin{itemize}
+\item Язык: Python
+\item Среда разработки: PyCharm
+\item Используемые библиотеки: NumPy, SciPy
+\end{itemize}
+
+
+\section{Результаты}
+На следующих изображениях приведены графики плотности распределений (теоретические), гистограммы распределений сгенерированных значений, а также графики плотности распределений, полученных исходя из сгенерированных значений (темно зелёный график).
+
+\subsection{Нормальное распределение}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.7]{fig/Normal_distr.png}
+		\caption{Экспериментальные и теоретические данные для нормального распределения} 
+		\label{pic:pic_name} % название для ссылок внутри кода
+	\end{center}
+\end{figure}
+
+\subsection{Распределение Коши}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.7]{fig/Cauchy_distr.png}
+		\caption{Экспериментальные и теоретические данные для распределения Коши} 
+		\label{pic:pic_name} % название для ссылок внутри кода
+	\end{center}
+\end{figure}
+
+\subsection{Распределение Лапласа}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.7]{fig/Laplace_distr.png}
+		\caption{Экспериментальные и теоретические данные для распределения Лапласа} 
+		\label{pic:pic_name} % название для ссылок внутри кода
+	\end{center}
+\end{figure}
+
+\subsection{Распределение Пуассона}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.7]{fig/Poisson_distr.png}
+		\caption{Экспериментальные и теоретические данные для распределения Пуассона} 
+		\label{pic:pic_name} % название для ссылок внутри кода
+	\end{center}
+\end{figure}
+
+\subsection{Равномерное распределение}
+
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.7]{fig/Uniform_distr.png}
+		\caption{Экспериментальные и теоретические данные для равномерного распределения} 
+		\label{pic:pic_name}
+	\end{center}
+\end{figure}
+
+
+\section{Обсуждение}
+Гистограммы для данных, сгенерированных для различных распределений, не совпадают с теоретической оценкой - графиками плотности вероятности этих распределений. В некоторых случаях данные имеют большие характеристики рассеяния (например, для некоторых массивов данных распределения Коши и равномерного распределения). Также, на некоторых графиках можно заметить смещение нормы относительно теоретической оценки (например, для распределения Лапласа во всех трёх случаях). 
+\\
+Важно отметить общую тенденцию - чем больше массив данных, тем лучше он соответствует (по визуальным оценкам графиков) теоретическим оценкам распределений.
+
+
+
+
+\section{Литература}
+Максимов Ю. Д. Математическая статистика //СПб.: СПбГПУ. – 2004.
+
+Гурский Е. И. Теория вероятностей с элементами математической статистики. – Высш. школа, 1971.
+
+\section{Приложения}
+
+Репозиторий с кодом программы и кодом отчёта: \href{https://github.com/unjamini/math-stat-lab}{https://github.com/unjamini/math-stat-lab}
+
+
+
