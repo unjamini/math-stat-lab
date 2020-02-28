@@ -3,12 +3,14 @@ import matplotlib.pyplot as plt
 import scipy.stats as stats
 import seaborn as sns
 import math
+from scipy.special import factorial
+
 
 x = np.linspace(-10, 10, 1000)
 # distr = 'Cauchy'
 # distr = 'Norm'
-# distr = 'Laplace'
-distr = 'Poisson'
+distr = 'Laplace'
+# distr = 'Poisson'
 # distr = 'Uniform'
 
 
@@ -31,7 +33,7 @@ if distr == 'Norm':
 
     plt.subplot(133)
     sns.distplot(normal_distr_1000, color="g", label='Гистограмма сгенерированных значений')
-    plt.plot(x, stats.norm.pdf(x, 0, 1), color="orange", label='График функции распределения')
+    plt.plot(x, stats.norm.pdf(x, 0, 1), color="orange", label='График плотности распределения')
     plt.title('1000 значений', y=-0.3)
 
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0., prop={'size': 6})
@@ -57,7 +59,7 @@ if distr == 'Cauchy':
 
     plt.subplot(133)
     sns.distplot(cauchy_distr_1000[(-100 <= cauchy_distr_1000) & (cauchy_distr_1000 <= 100)], color="g", label='Гистограмма сгенерированных значений')
-    plt.plot(x, stats.cauchy.pdf(x, 0, 1), color="orange", label='График функции распределения')
+    plt.plot(x, stats.cauchy.pdf(x, 0, 1), color="orange", label='График плотности распределения')
     plt.title('1000 значений', y=-0.3)
 
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0., prop={'size': 6})
@@ -73,17 +75,17 @@ if distr == 'Laplace':
     f = plt.figure(1, figsize=(9, 3))
     plt.subplot(131)
     sns.distplot(lapl_distr_10, color="g")
-    plt.plot(x, stats.laplace.pdf(x, math.sqrt(2) / 2, 1), color="orange")
+    plt.plot(x, stats.laplace.pdf(x, 0, math.sqrt(2) / 2), color="orange")
     plt.title('10 значений', y=-0.3)
 
     plt.subplot(132)
     sns.distplot(lapl_distr_50, color="g")
-    plt.plot(x, stats.laplace.pdf(x, math.sqrt(2) / 2, 1), color="orange")
+    plt.plot(x, stats.laplace.pdf(x, 0, math.sqrt(2) / 2), color="orange")
     plt.title('50 значений \n Распределение Лапласа', y=-0.4)
 
     plt.subplot(133)
     sns.distplot(lapl_distr_1000, color="g", label='Гистограмма сгенерированных значений')
-    plt.plot(x, stats.laplace.pdf(x, math.sqrt(2) / 2, 1), color="orange", label='График функции распределения')
+    plt.plot(x, stats.laplace.pdf(x, 0, math.sqrt(2) / 2), color="orange", label='График плотности распределения')
     plt.title('1000 значений', y=-0.3)
 
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0., prop={'size': 6})
@@ -91,7 +93,7 @@ if distr == 'Laplace':
     f.savefig('Laplace_distr.png', dpi=200)
 
 if distr == 'Poisson':
-    x = np.linspace(-4, 4, 1000)
+    x = np.linspace(0, 20, 1000)
     poi_distr_10 = np.random.poisson(10, 10)
     poi_distr_50 = np.random.poisson(10, 50)
     poi_distr_1000 = np.random.poisson(10, 1000)
@@ -99,17 +101,17 @@ if distr == 'Poisson':
     f = plt.figure(1, figsize=(9, 3))
     plt.subplot(131)
     sns.distplot(poi_distr_10, color="g")
-    plt.plot(x, stats.poisson.pmf(x, 10, 0), color="orange")
+    plt.plot(x, np.exp(-10) * np.power(10, x)/factorial(x), color="orange")
     plt.title('10 значений', y=-0.3)
 
     plt.subplot(132)
     sns.distplot(poi_distr_50, color="g")
-    plt.plot(x, stats.poisson.pmf(x, 10, 0), color="orange")
+    plt.plot(x, np.exp(-10) * np.power(10, x)/factorial(x), color="orange")
     plt.title('50 значений \n Распределение Пуассона', y=-0.4)
 
     plt.subplot(133)
     sns.distplot(poi_distr_1000, color="g", label='Гистограмма сгенерированных значений')
-    plt.plot(x, stats.poisson.pmf(x, 10, 0), color="orange", label='График функции распределения')
+    plt.plot(x, np.exp(-10) * np.power(10, x)/factorial(x), color="orange", label='График плотности распределения')
     plt.title('1000 значений', y=-0.3)
 
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0., prop={'size': 6})
@@ -136,7 +138,7 @@ if distr == 'Uniform':
 
     plt.subplot(133)
     sns.distplot(uni_distr_1000, color="g", label='Гистограмма сгенерированных значений')
-    plt.plot(x, stats.uniform.pdf(x, -math.sqrt(3), 2 * math.sqrt(3)), color="orange", label='График функции распределения')
+    plt.plot(x, stats.uniform.pdf(x, -math.sqrt(3), 2 * math.sqrt(3)), color="orange", label='График плотности распределения')
     plt.title('1000 значений', y=-0.3)
 
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0., prop={'size': 6})
