@@ -40,9 +40,6 @@ def confidence_ellipse(x, y, ax, n_std=3.0, facecolor='none', **kwargs):
     # two-dimensionl dataset.
     ell_radius_x = np.sqrt(1 + pearson)
     ell_radius_y = np.sqrt(1 - pearson)
-    print()
-    print(ell_radius_x, ell_radius_y)
-    print()
     ellipse = Ellipse((0, 0), width=ell_radius_x * 2, height=ell_radius_y * 2,
                       facecolor=facecolor,
                       edgecolor='midnightblue', **kwargs)
@@ -86,6 +83,7 @@ def confidence_ellipse(x, y, ax, n_std=3.0, facecolor='none', **kwargs):
 
 fig, axs = plt.subplots(1, 3, figsize=(9, 3))
 for ax, size in zip(axs, len_list):
+    size = 2
     sample_d = 0.9 * np.random.multivariate_normal([0, 0], [[1, 0.9], [0.9, 1]], size=size) \
                + 0.1 * np.random.multivariate_normal([0, 0], [[10, -0.9], [-0.9, 10]], size=size)
     ax.scatter(sample_d[:, 0], sample_d[:, 1], color='cornflowerblue', s=3)
